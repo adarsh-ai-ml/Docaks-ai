@@ -190,7 +190,7 @@ def create_or_update_vectorstore():
         pdf_chunks = [
             chunk
             for chunk in chunks
-            if chunk.metadata.get("source") == pdf_path
+            if chunk.metadata.get("source") == str(pdf_path)
         ]
 
 
