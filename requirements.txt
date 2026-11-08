@@ -1,0 +1,15 @@
+
+streamlit
+requests
+fastapi
+uvicorn
+python-multipart
+pydantic
+transformers
+torch
+sentence-transformers
+langchain-community
+langchain-text-splitters
+langchain-huggingface
+langchain-chroma
+pypdf
