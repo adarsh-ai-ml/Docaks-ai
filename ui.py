@@ -6,6 +6,8 @@ from urllib.parse import quote
 from ingestion import create_or_update_vectorstore
 from config import PDF_DIR
 
+BACKEND_URL = os.getenv("BACKEND_URL", "http://127.0.0.1:8000")
+
 # PAGE CONFIGURATION
 
 st.set_page_config(
@@ -527,7 +529,7 @@ gap:10px;
                 with st.spinner("Uploading and indexing PDFs..."):
 
                     response = requests.post(
-                        "http://127.0.0.1:8000/upload",
+                        f"{BACKEND_URL}/upload",
                         files=files_to_upload,
                         timeout=300
                     )
@@ -619,7 +621,7 @@ if active_page == "Document Library":
 
                         try:
                             response = requests.delete(
-                                f"http://127.0.0.1:8000/pdf/{quote(pdf_file)}"
+                                f"{BACKEND_URL}/pdf/{quote(pdf_file)}"
                             )
 
                             if response.status_code == 200:
@@ -797,7 +799,7 @@ with st.popover("📎 PDF KNOWLEDGE"):
 
          for pdf_file in pdf_files:
 
-            pdf_url = f"http://localhost:8000/pdf/{quote(pdf_file)}"
+            pdf_url = f"{BACKEND_URL}/pdf/{quote(pdf_file)}"
 
             st.markdown(
                 f'<a href="{pdf_url}" target="_blank" '
@@ -829,7 +831,7 @@ if question:
             with st.spinner("Searching documents and generating answer..."):
 
                 response = requests.post(
-                    "http://127.0.0.1:8000/ask",
+                    f"{BACKEND_URL}/ask",
                     json={"question": question},
                     timeout=180
                 )
