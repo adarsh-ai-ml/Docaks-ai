@@ -1,0 +1,12 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+.env
+chroma_db/
+data/*.pdf
+.streamlit/secrets.toml
+*.log
+app_backup.py
+app_smart_indexing_backup.py
+ui_backup_before_api.py
