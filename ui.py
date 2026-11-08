@@ -7,7 +7,8 @@ from ingestion import create_or_update_vectorstore
 from config import PDF_DIR
 
 BACKEND_URL = os.getenv("BACKEND_URL", "http://127.0.0.1:8000")
-
+if "BACKEND_URL" in st.secrets:
+    BACKEND_URL = st.secrets["BACKEND_URL"]
 # PAGE CONFIGURATION
 
 st.set_page_config(
